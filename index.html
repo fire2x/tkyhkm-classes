@@ -323,7 +323,6 @@ footer {
     <select id="f-sort" aria-label="排序">
       <option value="reg">依報名開始</option>
       <option value="enroll">依報名人數（多到少）</option>
-      <option value="rate">依報名率（高到低）</option>
     </select>
   </div>
 
@@ -447,10 +446,8 @@ function render() {
     (site === 'all' || siteOf(c) === site) &&
     (!q || [c.name, c.category, c.location, c.contact, c.code, c.city].join(' ').toLowerCase().includes(q))
   );
-  const rate = c => c.quota && c.enrolled != null ? c.enrolled / examNeed(c) : 0;
   list.sort((a, b) => {
     if (sort === 'enroll') return (b.enrolled ?? -1) - (a.enrolled ?? -1);
-    if (sort === 'rate') return rate(b) - rate(a);
     return (a.regStart || '').localeCompare(b.regStart || '');
   });
 
