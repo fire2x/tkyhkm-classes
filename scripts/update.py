@@ -46,7 +46,7 @@ def fetch(url, body=None, content_type=None, retries=3):
     for attempt in range(1, retries + 1):
         req = urllib.request.Request(url, data=body, headers=headers)
         try:
-            with urllib.request.urlopen(req, timeout=60, context=context) as resp:
+            with urllib.request.urlopen(req, timeout=30, context=context) as resp:
                 return resp.read().decode("utf-8", errors="replace")
         except urllib.error.HTTPError as exc:
             if exc.code < 500 or attempt == retries:
