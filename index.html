@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>北基宜花金馬分署班級總覽</title>
+<style>
+/* Palette: warm paper neutrals with a deep teal accent. Status colors are semantic, not decorative. */
+:root {
+  --bg: #f3f2ee;
+  --panel: #ffffff;
+  --panel-2: #faf9f6;
+  --fg: #1c1d1a;
+  --muted: #6a6961;
+  --line: #e4e2da;
+  --accent: #1d5a56;
+  --accent-soft: #e2efec;
+  --bar: #2b8580;
+  --open: #17724a;
+  --open-soft: #d9f0e2;
+  --pre: #946000;
+  --pre-soft: #fbeed0;
+  --closed: #6a6961;
+  --closed-soft: #e9e8e2;
+  --mark: #1c1d1a;
+  --shadow: 0 1px 2px rgba(20, 20, 16, 0.06), 0 4px 14px rgba(20, 20, 16, 0.05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131412;
+    --panel: #1d1e1c;
+    --panel-2: #232421;
+    --fg: #ebe8df;
+    --muted: #9a988f;
+    --line: #34352f;
+    --accent: #86cbc3;
+    --accent-soft: #1f3836;
+    --bar: #5db3ab;
+    --open: #6fd196;
+    --open-soft: #1f3a2a;
+    --pre: #e9bc62;
+    --pre-soft: #3b2f1c;
+    --closed: #9a988f;
+    --closed-soft: #2a2b28;
+    --mark: #ebe8df;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131412;
+  --panel: #1d1e1c;
+  --panel-2: #232421;
+  --fg: #ebe8df;
+  --muted: #9a988f;
+  --line: #34352f;
+  --accent: #86cbc3;
+  --accent-soft: #1f3836;
+  --bar: #5db3ab;
+  --open: #6fd196;
+  --open-soft: #1f3a2a;
+  --pre: #e9bc62;
+  --pre-soft: #3b2f1c;
+  --closed: #9a988f;
+  --closed-soft: #2a2b28;
+  --mark: #ebe8df;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.6 "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 56px;
+}
+main { max-width: 1140px; margin: 0 auto; }
+
+/* Header band */
+.hero {
+  background: var(--accent);
+  color: #fff;
+  margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 0;
+  padding: 28px max(16px, env(safe-area-inset-left, 0px)) 64px;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+}
+.hero-inner { max-width: 1140px; margin: 0 auto; }
+.hero h1 { font-size: clamp(1.35rem, 3.6vw, 1.85rem); margin: 0 0 6px; letter-spacing: 0.02em; text-wrap: balance; }
+.hero p { margin: 0; opacity: 0.85; font-size: 0.92rem; }
+.hero-meta { margin-top: 10px; font-size: 0.82rem; opacity: 0.8; }
+
+/* Summary strip overlaps the header band */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: -40px 0 22px;
+  position: relative;
+}
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+.stat b { display: block; font-size: 1.7rem; line-height: 1.2; font-variant-numeric: tabular-nums; color: var(--accent); }
+.stat span { color: var(--muted); font-size: 0.85rem; }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+.filters input, .filters select {
+  font: inherit;
+  color: var(--fg);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 12px;
+  min-width: 0;
+}
+.filters input { flex: 1 1 240px; }
+.filters input:focus, .filters select:focus, .chip:focus-visible, .card a:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 14px;
+  cursor: pointer;
+}
+.chip[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+
+/* Legend for the enrollment bar */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+.legend .l-fill { background: var(--bar); }
+.legend .l-mark { background: var(--mark); width: 3px; height: 14px; border-radius: 2px; }
+
+/* Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--stripe, var(--line));
+  border-radius: 14px;
+  padding: 18px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover { transform: translateY(-2px); }
+.card.open { --stripe: var(--open); }
+.card.pre { --stripe: var(--pre); }
+.card.closed { --stripe: var(--closed); }
+.card-top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.pill { font-size: 0.76rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.pill.open { color: var(--open); background: var(--open-soft); }
+.pill.pre { color: var(--pre); background: var(--pre-soft); }
+.pill.closed { color: var(--closed); background: var(--closed-soft); }
+.tag { font-size: 0.76rem; color: var(--muted); background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; }
+.card h3 { font-size: 1.02rem; margin: 0; line-height: 1.45; text-wrap: balance; overflow-wrap: anywhere; font-weight: 700; }
+.card h3 a { color: inherit; text-decoration: none; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size 0.2s ease; }
+.card h3 a:hover { background-size: 100% 1.5px; }
+
+/* Enrollment bar: full = 1.6 x quota; the tick marks the quota (開班人數) */
+.enroll { display: flex; flex-direction: column; gap: 8px; }
+.enroll-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.enroll-num { font-size: 0.86rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.enroll-num strong { color: var(--fg); font-size: 1.35rem; font-weight: 700; }
+.enroll-pct { font-size: 0.86rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.bar { position: relative; height: 10px; background: var(--line); border-radius: 999px; }
+.bar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--bar); border-radius: 999px; }
+.bar > b { position: absolute; top: -4px; bottom: -4px; width: 3px; margin-left: -1px; background: var(--mark); border-radius: 2px; }
+.bar-scale { position: relative; height: 16px; font-size: 0.74rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar-scale span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.bar-scale span:first-child { transform: none; }
+.bar-scale span:last-child { transform: translateX(-100%); }
+.hint { font-size: 0.82rem; font-weight: 600; }
+.hint.ok { color: var(--open); }
+.hint.warn { color: var(--pre); }
+
+dl { margin: 0; display: grid; grid-template-columns: 4.6em 1fr; gap: 6px 12px; font-size: 0.88rem; }
+dt { color: var(--muted); }
+dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.card-foot { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; border-top: 1px dashed var(--line); padding-top: 12px; margin-top: auto; }
+.btn {
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 9px;
+  padding: 7px 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+details { font-size: 0.88rem; flex: 1 1 100%; }
+summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+details dl { margin-top: 10px; }
+
+.note-box { font-size: 0.84rem; color: var(--muted); background: var(--panel-2); border: 1px dashed var(--line); border-radius: 9px; padding: 8px 10px; }
+.empty { color: var(--muted); padding: 24px 0; text-align: center; }
+.error { color: #9b2c2c; }
+footer { margin-top: 36px; color: var(--muted); font-size: 0.82rem; line-height: 1.8; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <h1>北基宜花金馬分署 班級報名總覽</h1>
+    <p>職前與在職班級的報名情況，資料來自職業訓練整合網</p>
+    <div class="hero-meta" id="updated">資料載入中…</div>
+  </div>
+</header>
+
+<main>
+  <section class="stats" aria-label="統計">
+    <div class="stat"><b id="s-total">–</b><span>班級數</span></div>
+    <div class="stat"><b id="s-open">–</b><span>目前報名中</span></div>
+    <div class="stat"><b id="s-kind">–</b><span>在職 / 職前</span></div>
+  </section>
+
+  <div class="filters">
+    <input id="q" type="search" placeholder="搜尋班名、職類、地點、窗口…" aria-label="搜尋">
+    <div class="chips" id="f-status" role="group" aria-label="報名狀態">
+      <button class="chip" data-v="all" aria-pressed="true">全部狀態</button>
+      <button class="chip" data-v="open" aria-pressed="false">報名中</button>
+      <button class="chip" data-v="pre" aria-pressed="false">尚未開放</button>
+      <button class="chip" data-v="closed" aria-pressed="false">已截止</button>
+    </div>
+    <select id="f-kind" aria-label="性質">
+      <option value="all">在職與職前</option>
+      <option value="在職">只看在職</option>
+      <option value="職前">只看職前</option>
+    </select>
+    <select id="f-site" aria-label="訓練場地">
+      <option value="all">全部場地</option>
+      <option value="基隆">基隆</option>
+      <option value="五股">五股</option>
+      <option value="泰山">泰山</option>
+      <option value="宜蘭">宜蘭</option>
+      <option value="花蓮">花蓮</option>
+      <option value="六堵">六堵</option>
+      <option value="金門">金門</option>
+    </select>
+    <select id="f-sort" aria-label="排序">
+      <option value="reg">依報名開始</option>
+      <option value="enroll">依報名人數（多到少）</option>
+      <option value="rate">依報名率（高到低）</option>
+    </select>
+  </div>
+
+  <div class="legend" aria-hidden="true">
+    <span><i class="l-fill"></i>已報名</span>
+    <span><i class="l-mark"></i>預訓人數（開班門檻）</span>
+    <span>整條滿格 = 預訓人數 × 1.6（可辦理甄試的門檻）</span>
+  </div>
+
+  <p class="empty" id="status-msg">資料載入中…</p>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>沒有符合條件的班級。</p>
+
+  <footer>
+    報名人數與名額取自各班明細頁，實際以原網站公告為準。依招生規定，報名人數需達預訓人數 1.6 倍才能辦理甄試。資料每日中午 12 點與半夜 12 點自動更新。
+  </footer>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LABEL = { open: '報名中', pre: '尚未開放', closed: '已截止' };
+
+// Enrollment thresholds: quota is the class size (預訓人數); 1.6x is the bar to hold the exam.
+const EXAM_RATIO = 1.6;
+const examNeed = c => c.quota ? Math.ceil(c.quota * EXAM_RATIO) : null;
+
+// "Today" in Taiwan, as YYYY-MM-DD, so status matches the site's own dates.
+const todayTW = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
+
+let DATA = [];
+let statusFilter = 'all';
+
+// Training venue group. 六堵 and 金門 are checked before 基隆 so their addresses don't fall into it.
+// The class name is checked too, since one 六堵 class's address only says 七堵.
+const SITE_KEYS = ['六堵', '金門', '基隆', '五股', '泰山', '宜蘭', '花蓮'];
+function siteOf(c) {
+  const text = `${c.name || ''} ${c.location || ''} ${c.city || ''}`;
+  return SITE_KEYS.find(k => text.includes(k)) || '';
+}
+
+function statusOf(c, today) {
+  if (!c.regStart || !c.regEnd) return 'closed';
+  if (today < c.regStart) return 'pre';
+  if (today <= c.regEnd) return 'open';
+  return 'closed';
+}
+
+const fmtRange = (a, b) => a && b ? `${a.replaceAll('-', '/')} ～ ${b.replaceAll('-', '/')}` : '—';
+
+function enrollBlock(c) {
+  if (c.enrolled == null || !c.quota) {
+    return `<div class="note-box">報名人數未取得</div>`;
+  }
+  const need = examNeed(c);
+  const pct = c.enrolled / need * 100;
+  const fill = Math.min(100, pct);
+  const mark = (c.quota / need * 100).toFixed(2);
+  const hint = c.enrolled >= need
+    ? `<span class="hint ok">已達 1.6 倍，可辦理甄試</span>`
+    : c.enrolled >= c.quota
+      ? `<span class="hint warn">已達預訓人數，尚差 ${need - c.enrolled} 人達 1.6 倍</span>`
+      : `<span class="hint warn">尚差 ${c.quota - c.enrolled} 人達預訓人數</span>`;
+  return `
+    <div class="enroll">
+      <div class="enroll-top">
+        <div class="enroll-num"><strong>${c.enrolled}</strong> 人已報名</div>
+        <div class="enroll-pct">${Math.round(pct)}%</div>
+      </div>
+      <div class="bar" role="progressbar" aria-label="報名進度" aria-valuemin="0" aria-valuemax="${need}" aria-valuenow="${c.enrolled}">
+        <i style="width:${fill.toFixed(2)}%"></i>
+        <b style="left:${mark}%"></b>
+      </div>
+      <div class="bar-scale"><span style="left:0">0</span><span style="left:${mark}%">預訓 ${c.quota}</span><span style="left:100%">1.6 倍 ${need}</span></div>
+      ${hint}
+    </div>`;
+}
+
+function card(c, today) {
+  const st = statusOf(c, today);
+  return `<article class="card ${st}">
+    <div class="card-top">
+      <span class="pill ${st}">${LABEL[st]}</span>
+      <span class="tag">${esc(c.source)}</span>
+      ${c.city ? `<span class="tag">${esc(c.city)}</span>` : ''}
+    </div>
+    <h3><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.name)}</a></h3>
+    ${enrollBlock(c)}
+    <dl>
+      <dt>報名期間</dt><dd>${fmtRange(c.regStart, c.regEnd)}</dd>
+      <dt>訓練期間</dt><dd>${fmtRange(c.trainStart, c.trainEnd)}</dd>
+      <dt>甄試日期</dt><dd>${esc(c.exam || '—')}</dd>
+    </dl>
+    <div class="card-foot">
+      <a class="btn" href="${esc(c.url)}" target="_blank" rel="noopener">查看班級明細 ↗</a>
+      <details>
+        <summary>更多資訊</summary>
+        <dl>
+          <dt>上課地點</dt><dd>${esc(c.location || '—')}</dd>
+          <dt>上課時間</dt><dd>${esc(c.time || '—')}</dd>
+          <dt>職類</dt><dd>${esc(c.category || '—')}</dd>
+          <dt>窗口</dt><dd>${esc(c.contact || '—')}</dd>
+          <dt>電話</dt><dd>${esc(c.phone || '—')}</dd>
+          <dt>班級代碼</dt><dd>${esc(c.code || '—')}</dd>
+        </dl>
+      </details>
+    </div>
+  </article>`;
+}
+
+function render() {
+  const today = todayTW();
+  const q = $('q').value.trim().toLowerCase();
+  const kind = $('f-kind').value;
+  const site = $('f-site').value;
+  const sort = $('f-sort').value;
+
+  const list = DATA.filter(c =>
+    (statusFilter === 'all' || statusOf(c, today) === statusFilter) &&
+    (kind === 'all' || c.source === kind) &&
+    (site === 'all' || siteOf(c) === site) &&
+    (!q || [c.name, c.category, c.location, c.contact, c.code, c.city].join(' ').toLowerCase().includes(q))
+  );
+  const rate = c => c.quota && c.enrolled != null ? c.enrolled / examNeed(c) : 0;
+  list.sort((a, b) => {
+    if (sort === 'enroll') return (b.enrolled ?? -1) - (a.enrolled ?? -1);
+    if (sort === 'rate') return rate(b) - rate(a);
+    return (a.regStart || '').localeCompare(b.regStart || '');
+  });
+
+  $('grid').innerHTML = list.map(c => card(c, today)).join('');
+  $('empty').hidden = list.length > 0;
+
+  // Summary counts the whole dataset, not the filtered view.
+  $('s-total').textContent = DATA.length;
+  $('s-open').textContent = DATA.filter(c => statusOf(c, today) === 'open').length;
+  const zai = DATA.filter(c => c.source === '在職').length;
+  $('s-kind').textContent = `${zai} / ${DATA.length - zai}`;
+}
+
+document.querySelectorAll('#f-status .chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    statusFilter = btn.dataset.v;
+    document.querySelectorAll('#f-status .chip').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    render();
+  });
+});
+['q', 'f-kind', 'f-site', 'f-sort'].forEach(id => $(id).addEventListener('input', render));
+
+fetch('data/classes.json', { cache: 'no-store' })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
+    DATA = data.classes || [];
+    const failed = (data.failed || []).length;
+    $('updated').textContent = `資料更新時間 ${data.updatedAt.replace('T', ' ')}｜查詢期間 ${data.window}` +
+      (failed ? `｜${failed} 班明細頁未能讀取` : '');
+    render();
+  })
+  .catch(() => {
+    $('updated').textContent = '無法載入班級資料，請稍後重新整理。';
+    $('updated').classList.add('error');
+    $('status-msg').hidden = true;
+  });
+</script>
+</body>
+</html>

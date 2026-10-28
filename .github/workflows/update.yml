@@ -1,0 +1,40 @@
+name: Update class data
+
+on:
+  schedule:
+    # GitHub cron runs in UTC. Taiwan is UTC+8, so 04:00 UTC = 12:00 and 16:00 UTC = 00:00 (midnight).
+    - cron: "0 4 * * *"
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: class-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch latest class data
+        run: python scripts/update.py
+
+      - name: Commit if the data changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/classes.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Update class data ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            git push
+          fi
