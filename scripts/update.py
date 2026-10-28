@@ -10,6 +10,7 @@ import datetime as dt
 import html
 import json
 import re
+import ssl
 import sys
 import time
 import urllib.parse
@@ -25,13 +26,35 @@ TZ = dt.timezone(dt.timedelta(hours=8))
 UA = "Mozilla/5.0 (class-dashboard refresh)"
 
 
-def fetch(url, body=None, content_type=None):
+CHAIN = Path(__file__).resolve().parent / "its_chain.pem"
+
+
+def ssl_context():
+    """Verify certificates as usual, plus the extra intermediate certificates
+    that its.taiwanjobs.gov.tw forgets to send (see scripts/its_chain.pem)."""
+    context = ssl.create_default_context()
+    if CHAIN.exists():
+        context.load_verify_locations(cafile=str(CHAIN))
+    return context
+
+
+def fetch(url, body=None, content_type=None, retries=3):
     headers = {"User-Agent": UA}
     if content_type:
         headers["Content-Type"] = content_type
-    req = urllib.request.Request(url, data=body, headers=headers)
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+    context = ssl_context()
+    for attempt in range(1, retries + 1):
+        req = urllib.request.Request(url, data=body, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=60, context=context) as resp:
+                return resp.read().decode("utf-8", errors="replace")
+        except urllib.error.HTTPError as exc:
+            if exc.code < 500 or attempt == retries:
+                raise
+        except urllib.error.URLError:
+            if attempt == retries:
+                raise
+        time.sleep(5 * attempt)  # back off before retrying a slow or failing server
 
 
 def search_window(today):
