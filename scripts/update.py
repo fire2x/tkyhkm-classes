@@ -113,6 +113,7 @@ def parse_ojt(text):
     return {
         "quota": to_int(grab(text, "訓練學員數")),
         "enrolled": to_int(grab(text, "報名人數")),
+        "hours": to_int(grab(text, "訓練時數")),
         "exam": grab(text, "甄試日期"),
         "time": grab(text, "上課時間"),
         "contact": grab(text, "聯絡窗口"),
@@ -120,15 +121,36 @@ def parse_ojt(text):
     }
 
 
+def value_after(text, label):
+    """职前訓練網 puts each value on the line after its label."""
+    lines = text.split("\n")
+    for i, line in enumerate(lines):
+        if line == label:
+            for nxt in lines[i + 1:i + 3]:
+                if nxt and nxt != label:
+                    return nxt
+    return None
+
+
+def roc_date(value):
+    """115/12/30 (民國) -> 2026/12/30."""
+    match = re.match(r"(\d+)/(\d+)/(\d+)", value or "")
+    if not match:
+        return value
+    year, month, day_ = (int(x) for x in match.groups())
+    return f"{year + 1911}/{month:02d}/{day_:02d}"
+
+
 def parse_its(text):
     """職前訓練網 detail page."""
     return {
         "quota": to_int(grab(text, "一般訓練學員數")),
         "enrolled": to_int(grab(text, "目前一般訓練報名人數")),
-        "exam": None,
-        "time": None,
-        "contact": None,
-        "phone": None,
+        "hours": to_int(value_after(text, "訓練時數")),
+        "exam": roc_date(value_after(text, "甄試日期")),
+        "time": value_after(text, "訓練時段"),
+        "contact": value_after(text, "聯絡窗口"),
+        "phone": value_after(text, "聯絡電話"),
     }
 
 
@@ -154,6 +176,7 @@ def build(row):
         "url": url,
         "quota": None,
         "enrolled": None,
+        "hours": None,
         "exam": None,
         "time": None,
         "contact": None,
