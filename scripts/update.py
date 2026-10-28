@@ -142,6 +142,7 @@ def build(row):
         rec.update(parser(page_text(fetch(url))))
     except Exception as exc:  # keep the class even if its detail page fails
         rec["error"] = str(exc)[:200]
+        print(f"detail page failed: {url}: {rec['error']}", file=sys.stderr)
     time.sleep(0.5)  # be polite to the government servers
     return rec
 
