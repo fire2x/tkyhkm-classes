@@ -5,142 +5,175 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>北基宜花金馬分署班級總覽</title>
 <style>
-/* Palette: warm paper neutrals with a deep teal accent. Status colors are semantic, not decorative. */
+/* Glassmorphism: translucent panels with blur over a soft color field.
+   Colors are tokens; the dark theme swaps the field and the glass tint. */
 :root {
-  --bg: #f3f2ee;
-  --panel: #ffffff;
-  --panel-2: #faf9f6;
-  --fg: #1c1d1a;
-  --muted: #6a6961;
-  --line: #e4e2da;
-  --accent: #1d5a56;
-  --accent-soft: #e2efec;
-  --bar: #2b8580;
-  --open: #17724a;
-  --open-soft: #d9f0e2;
-  --pre: #946000;
-  --pre-soft: #fbeed0;
-  --closed: #6a6961;
-  --closed-soft: #e9e8e2;
-  --mark: #1c1d1a;
-  --shadow: 0 1px 2px rgba(20, 20, 16, 0.06), 0 4px 14px rgba(20, 20, 16, 0.05);
+  --field-1: #bfe7e1;
+  --field-2: #d9dcff;
+  --field-3: #ffe3c7;
+  --glass: rgba(255, 255, 255, 0.52);
+  --glass-strong: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(255, 255, 255, 0.75);
+  --glass-shadow: 0 10px 40px rgba(37, 52, 92, 0.14);
+  --fg: #16202a;
+  --muted: #56606b;
+  --accent: #0f6f68;
+  --accent-ink: #ffffff;
+  --track: rgba(22, 32, 42, 0.10);
+  --bar-from: #2aa39a;
+  --bar-to: #5ccbb4;
+  --mark: #16202a;
+  --open: #0d7444;
+  --open-bg: rgba(40, 180, 110, 0.16);
+  --pre: #8a5a00;
+  --pre-bg: rgba(230, 170, 40, 0.20);
+  --closed: #56606b;
+  --closed-bg: rgba(90, 100, 110, 0.14);
+  --warn: #9b2c2c;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #131412;
-    --panel: #1d1e1c;
-    --panel-2: #232421;
-    --fg: #ebe8df;
-    --muted: #9a988f;
-    --line: #34352f;
-    --accent: #86cbc3;
-    --accent-soft: #1f3836;
-    --bar: #5db3ab;
-    --open: #6fd196;
-    --open-soft: #1f3a2a;
-    --pre: #e9bc62;
-    --pre-soft: #3b2f1c;
-    --closed: #9a988f;
-    --closed-soft: #2a2b28;
-    --mark: #ebe8df;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
+    --field-1: #0f3b3a;
+    --field-2: #1f2350;
+    --field-3: #3d2a18;
+    --glass: rgba(255, 255, 255, 0.07);
+    --glass-strong: rgba(255, 255, 255, 0.12);
+    --glass-edge: rgba(255, 255, 255, 0.16);
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    --fg: #eef3f6;
+    --muted: #a7b1bb;
+    --accent: #7fe0d4;
+    --accent-ink: #0b1f1d;
+    --track: rgba(255, 255, 255, 0.12);
+    --bar-from: #37b8ac;
+    --bar-to: #8ff0de;
+    --mark: #eef3f6;
+    --open: #7ee8a8;
+    --open-bg: rgba(60, 200, 120, 0.18);
+    --pre: #f2c46d;
+    --pre-bg: rgba(230, 170, 40, 0.18);
+    --closed: #a7b1bb;
+    --closed-bg: rgba(255, 255, 255, 0.08);
+    --warn: #ffa3a3;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #131412;
-  --panel: #1d1e1c;
-  --panel-2: #232421;
-  --fg: #ebe8df;
-  --muted: #9a988f;
-  --line: #34352f;
-  --accent: #86cbc3;
-  --accent-soft: #1f3836;
-  --bar: #5db3ab;
-  --open: #6fd196;
-  --open-soft: #1f3a2a;
-  --pre: #e9bc62;
-  --pre-soft: #3b2f1c;
-  --closed: #9a988f;
-  --closed-soft: #2a2b28;
-  --mark: #ebe8df;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
+  --field-1: #0f3b3a;
+  --field-2: #1f2350;
+  --field-3: #3d2a18;
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-strong: rgba(255, 255, 255, 0.12);
+  --glass-edge: rgba(255, 255, 255, 0.16);
+  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --fg: #eef3f6;
+  --muted: #a7b1bb;
+  --accent: #7fe0d4;
+  --accent-ink: #0b1f1d;
+  --track: rgba(255, 255, 255, 0.12);
+  --bar-from: #37b8ac;
+  --bar-to: #8ff0de;
+  --mark: #eef3f6;
+  --open: #7ee8a8;
+  --open-bg: rgba(60, 200, 120, 0.18);
+  --pre: #f2c46d;
+  --pre-bg: rgba(230, 170, 40, 0.18);
+  --closed: #a7b1bb;
+  --closed-bg: rgba(255, 255, 255, 0.08);
+  --warn: #ffa3a3;
   color-scheme: dark;
 }
+
 * { box-sizing: border-box; }
+html { min-height: 100%; background: var(--field-2); }
 body {
   margin: 0;
-  background: var(--bg);
+  min-height: 100vh;
   color: var(--fg);
   font: 15px/1.6 "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  background:
+    radial-gradient(60vmax 60vmax at 8% 8%, var(--field-1), transparent 70%),
+    radial-gradient(55vmax 55vmax at 95% 15%, var(--field-2), transparent 70%),
+    radial-gradient(50vmax 50vmax at 60% 100%, var(--field-3), transparent 70%),
+    var(--field-2);
+  background-attachment: fixed;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 0 56px;
+  padding-block: 28px 56px;
 }
-main { max-width: 1140px; margin: 0 auto; }
+main, header { max-width: 1140px; margin: 0 auto; }
 
-/* Header band */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--glass-strong); }
+}
+
+/* Header */
 .hero {
-  background: var(--accent);
-  color: #fff;
-  margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 0;
-  padding: 28px max(16px, env(safe-area-inset-left, 0px)) 64px;
-  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  border-radius: 24px;
+  padding: 26px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px 20px;
 }
-.hero-inner { max-width: 1140px; margin: 0 auto; }
-.hero h1 { font-size: clamp(1.35rem, 3.6vw, 1.85rem); margin: 0 0 6px; letter-spacing: 0.02em; text-wrap: balance; }
-.hero p { margin: 0; opacity: 0.85; font-size: 0.92rem; }
-.hero-meta { margin-top: 10px; font-size: 0.82rem; opacity: 0.8; }
+.hero h1 { font-size: clamp(1.4rem, 3.6vw, 1.9rem); margin: 0 0 4px; letter-spacing: 0.02em; text-wrap: balance; }
+.hero p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.hero-meta { font-size: 0.82rem; color: var(--muted); text-align: right; max-width: 100%; }
 
-/* Summary strip overlaps the header band */
+/* Summary */
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  margin: -40px 0 22px;
-  position: relative;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin: 18px 0 18px;
 }
-.stat {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 16px 18px;
-  box-shadow: var(--shadow);
-}
-.stat b { display: block; font-size: 1.7rem; line-height: 1.2; font-variant-numeric: tabular-nums; color: var(--accent); }
-.stat span { color: var(--muted); font-size: 0.85rem; }
+.stat { border-radius: 18px; padding: 16px 18px; }
+.stat b { display: block; font-size: 1.8rem; line-height: 1.15; font-variant-numeric: tabular-nums; color: var(--accent); }
+.stat span { color: var(--muted); font-size: 0.86rem; }
 
 /* Filters */
 .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
 .filters input, .filters select {
   font: inherit;
   color: var(--fg);
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-edge);
+  border-radius: 12px;
   padding: 9px 12px;
   min-width: 0;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 .filters input { flex: 1 1 240px; }
-.filters input:focus, .filters select:focus, .chip:focus-visible, .card a:focus-visible, .btn:focus-visible {
+.filters input::placeholder { color: var(--muted); }
+.filters input:focus, .filters select:focus, .chip:focus-visible, .card a:focus-visible, .card summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: var(--muted);
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
   border-radius: 999px;
   padding: 5px 14px;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
-.chip[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.chip[aria-pressed="true"] { color: var(--accent-ink); background: var(--accent); border-color: transparent; font-weight: 600; }
 
-/* Legend for the enrollment bar */
 .legend {
   display: flex;
   flex-wrap: wrap;
@@ -149,51 +182,56 @@ main { max-width: 1140px; margin: 0 auto; }
   color: var(--muted);
   margin: 0 0 18px;
 }
-.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
-.legend .l-fill { background: var(--bar); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; vertical-align: -1px; margin-right: 6px; }
+.legend .l-fill { background: linear-gradient(90deg, var(--bar-from), var(--bar-to)); }
 .legend .l-mark { background: var(--mark); width: 3px; height: 14px; border-radius: 2px; }
 
 /* Cards */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
-  gap: 16px;
+  gap: 18px;
 }
 .card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--stripe, var(--line));
-  border-radius: 14px;
+  border-radius: 22px;
   padding: 18px 18px 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   min-width: 0;
-  box-shadow: var(--shadow);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-.card:hover { transform: translateY(-2px); }
-.card.open { --stripe: var(--open); }
-.card.pre { --stripe: var(--pre); }
-.card.closed { --stripe: var(--closed); }
+.card:hover { transform: translateY(-3px); }
 .card-top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.pill { font-size: 0.76rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
-.pill.open { color: var(--open); background: var(--open-soft); }
-.pill.pre { color: var(--pre); background: var(--pre-soft); }
-.pill.closed { color: var(--closed); background: var(--closed-soft); }
-.tag { font-size: 0.76rem; color: var(--muted); background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; }
+.pill { font-size: 0.76rem; font-weight: 700; padding: 3px 11px; border-radius: 999px; }
+.pill.open { color: var(--open); background: var(--open-bg); }
+.pill.pre { color: var(--pre); background: var(--pre-bg); }
+.pill.closed { color: var(--closed); background: var(--closed-bg); }
+.tag {
+  font-size: 0.76rem;
+  color: var(--muted);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-strong);
+  border-radius: 999px;
+  padding: 1px 9px;
+}
 .card h3 { font-size: 1.02rem; margin: 0; line-height: 1.45; text-wrap: balance; overflow-wrap: anywhere; font-weight: 700; }
-.card h3 a { color: inherit; text-decoration: none; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size 0.2s ease; }
-.card h3 a:hover { background-size: 100% 1.5px; }
+.card h3 a { color: inherit; text-decoration: none; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 2px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size 0.2s ease; }
+.card h3 a:hover { background-size: 100% 2px; color: var(--accent); }
 
-/* Enrollment bar: full = 1.6 x quota; the tick marks the quota (開班人數) */
+/* Enrollment bar: full = 1.6 x quota; the tick marks the quota (預訓人數) */
 .enroll { display: flex; flex-direction: column; gap: 8px; }
 .enroll-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .enroll-num { font-size: 0.86rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.enroll-num strong { color: var(--fg); font-size: 1.35rem; font-weight: 700; }
-.enroll-pct { font-size: 0.86rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
-.bar { position: relative; height: 10px; background: var(--line); border-radius: 999px; }
-.bar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--bar); border-radius: 999px; }
+.enroll-num strong { color: var(--fg); font-size: 1.4rem; font-weight: 700; }
+.enroll-pct { font-size: 0.9rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.bar { position: relative; height: 12px; background: var(--track); border-radius: 999px; }
+.bar > i {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--bar-from), var(--bar-to));
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(60, 200, 180, 0.35);
+}
 .bar > b { position: absolute; top: -4px; bottom: -4px; width: 3px; margin-left: -1px; background: var(--mark); border-radius: 2px; }
 .bar-scale { position: relative; height: 16px; font-size: 0.74rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .bar-scale span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
@@ -202,48 +240,45 @@ main { max-width: 1140px; margin: 0 auto; }
 .hint { font-size: 0.82rem; font-weight: 600; }
 .hint.ok { color: var(--open); }
 .hint.warn { color: var(--pre); }
+.note-box { font-size: 0.84rem; color: var(--muted); border: 1px dashed var(--glass-edge); border-radius: 12px; padding: 8px 10px; background: var(--glass); }
 
 dl { margin: 0; display: grid; grid-template-columns: 4.6em 1fr; gap: 6px 12px; font-size: 0.88rem; }
 dt { color: var(--muted); }
 dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
-.card-foot { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; border-top: 1px dashed var(--line); padding-top: 12px; margin-top: auto; }
-.btn {
-  font: inherit;
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: #fff;
-  background: var(--accent);
-  border: none;
-  border-radius: 9px;
-  padding: 7px 14px;
-  text-decoration: none;
-  cursor: pointer;
-}
-.btn:hover { filter: brightness(1.08); }
-details { font-size: 0.88rem; flex: 1 1 100%; }
-summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+.card-foot { border-top: 1px solid var(--glass-edge); padding-top: 10px; margin-top: auto; }
+details { font-size: 0.88rem; }
+summary { cursor: pointer; color: var(--accent); font-weight: 600; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: " +"; }
+details[open] summary::after { content: " −"; }
 details dl { margin-top: 10px; }
 
-.note-box { font-size: 0.84rem; color: var(--muted); background: var(--panel-2); border: 1px dashed var(--line); border-radius: 9px; padding: 8px 10px; }
-.empty { color: var(--muted); padding: 24px 0; text-align: center; }
-.error { color: #9b2c2c; }
-footer { margin-top: 36px; color: var(--muted); font-size: 0.82rem; line-height: 1.8; border-top: 1px solid var(--line); padding-top: 16px; }
+.empty { color: var(--muted); padding: 28px 0; text-align: center; }
+.error { color: var(--warn); }
+footer {
+  margin-top: 36px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  border-radius: 18px;
+  padding: 14px 18px;
+}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="hero-inner">
+<header class="hero glass">
+  <div>
     <h1>北基宜花金馬分署 班級報名總覽</h1>
     <p>職前與在職班級的報名情況，資料來自職業訓練整合網</p>
-    <div class="hero-meta" id="updated">資料載入中…</div>
   </div>
+  <div class="hero-meta" id="updated">資料載入中…</div>
 </header>
 
 <main>
   <section class="stats" aria-label="統計">
-    <div class="stat"><b id="s-total">–</b><span>班級數</span></div>
-    <div class="stat"><b id="s-open">–</b><span>目前報名中</span></div>
-    <div class="stat"><b id="s-kind">–</b><span>在職 / 職前</span></div>
+    <div class="stat glass"><b id="s-total">–</b><span>班級數</span></div>
+    <div class="stat glass"><b id="s-open">–</b><span>目前報名中</span></div>
+    <div class="stat glass"><b id="s-kind">–</b><span>在職 / 職前</span></div>
   </section>
 
   <div class="filters">
@@ -286,7 +321,7 @@ footer { margin-top: 36px; color: var(--muted); font-size: 0.82rem; line-height:
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty" hidden>沒有符合條件的班級。</p>
 
-  <footer>
+  <footer class="glass">
     報名人數與名額取自各班明細頁，實際以原網站公告為準。依招生規定，報名人數需達預訓人數 1.6 倍才能辦理甄試。資料每日中午 12 點與半夜 12 點自動更新。
   </footer>
 </main>
@@ -353,21 +388,21 @@ function enrollBlock(c) {
 
 function card(c, today) {
   const st = statusOf(c, today);
-  return `<article class="card ${st}">
+  return `<article class="card glass ${st}">
     <div class="card-top">
       <span class="pill ${st}">${LABEL[st]}</span>
       <span class="tag">${esc(c.source)}</span>
       ${c.city ? `<span class="tag">${esc(c.city)}</span>` : ''}
     </div>
-    <h3><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.name)}</a></h3>
+    <h3><a href="${esc(c.url)}" target="_blank" rel="noopener" title="開啟班級明細">${esc(c.name)}</a></h3>
     ${enrollBlock(c)}
     <dl>
       <dt>報名期間</dt><dd>${fmtRange(c.regStart, c.regEnd)}</dd>
       <dt>訓練期間</dt><dd>${fmtRange(c.trainStart, c.trainEnd)}</dd>
+      <dt>訓練時數</dt><dd>${c.hours != null ? c.hours + ' 小時' : '—'}</dd>
       <dt>甄試日期</dt><dd>${esc(c.exam || '—')}</dd>
     </dl>
     <div class="card-foot">
-      <a class="btn" href="${esc(c.url)}" target="_blank" rel="noopener">查看班級明細 ↗</a>
       <details>
         <summary>更多資訊</summary>
         <dl>
@@ -429,6 +464,7 @@ fetch('data/classes.json', { cache: 'no-store' })
     const failed = (data.failed || []).length;
     $('updated').textContent = `資料更新時間 ${data.updatedAt.replace('T', ' ')}｜查詢期間 ${data.window}` +
       (failed ? `｜${failed} 班明細頁未能讀取` : '');
+    $('status-msg').hidden = true;
     render();
   })
   .catch(() => {
