@@ -85,6 +85,22 @@
   color-scheme: dark;
 }
 
+/* Dropdown menus need a solid background; the glass tint lets the popup show as a light panel with light text. */
+:root { --menu-bg: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --menu-bg: #1d2428; }
+}
+:root[data-theme="dark"] { --menu-bg: #1d2428; }
+.filters select {
+  background-color: var(--menu-bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.filters select option {
+  background-color: var(--menu-bg);
+  color: var(--fg);
+}
+
 * { box-sizing: border-box; }
 html { min-height: 100%; background: var(--field-2); }
 body {
