@@ -85,6 +85,18 @@
   color-scheme: dark;
 }
 
+/* Course type: 職前 leans teal, 在職 leans indigo. The glass and layout stay the same. */
+:root { --zq: #0f8a82; --zq-tint: rgba(15, 138, 130, 0.13); --zz: #5b4fd1; --zz-tint: rgba(91, 79, 209, 0.12); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --zq: #6fd8ce; --zq-tint: rgba(111, 216, 206, 0.12); --zz: #b1a8ff; --zz-tint: rgba(177, 168, 255, 0.12); }
+}
+:root[data-theme="dark"] { --zq: #6fd8ce; --zq-tint: rgba(111, 216, 206, 0.12); --zz: #b1a8ff; --zz-tint: rgba(177, 168, 255, 0.12); }
+.card.kind-zq { background: linear-gradient(160deg, var(--zq-tint), var(--glass) 55%); }
+.card.kind-zz { background: linear-gradient(160deg, var(--zz-tint), var(--glass) 55%); }
+.kind { font-size: 0.76rem; font-weight: 700; padding: 1px 10px; border-radius: 6px; border: 1px solid currentColor; }
+.kind-zq { color: var(--zq); }
+.kind-zz { color: var(--zz); }
+
 /* Dropdown menus need a solid background; the glass tint lets the popup show as a light panel with light text. */
 :root { --menu-bg: #ffffff; }
 @media (prefers-color-scheme: dark) {
@@ -405,10 +417,11 @@ function enrollBlock(c) {
 
 function card(c, today) {
   const st = statusOf(c, today);
-  return `<article class="card glass ${st}">
+  const kind = c.source === '在職' ? 'zz' : 'zq';
+  return `<article class="card glass ${st} kind-${kind}">
     <div class="card-top">
       <span class="pill ${st}">${LABEL[st]}</span>
-      <span class="tag">${esc(c.source)}</span>
+      <span class="kind kind-${kind}">${esc(c.source)}</span>
       ${c.city ? `<span class="tag">${esc(c.city)}</span>` : ''}
     </div>
     <h3><a href="${esc(c.url)}" target="_blank" rel="noopener" title="開啟班級明細">${esc(c.name)}</a></h3>
