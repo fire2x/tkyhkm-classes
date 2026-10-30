@@ -361,7 +361,8 @@ const LABEL = { open: '報名中', pre: '尚未開放', closed: '已截止' };
 
 // Enrollment thresholds: quota is the class size (預訓人數); 1.6x is the bar to hold the exam.
 const EXAM_RATIO = 1.6;
-const examNeed = c => c.quota ? Math.ceil(c.quota * EXAM_RATIO) : null;
+// The 1.6x figure drops any decimal: 24 x 1.6 = 38.4, so 38 enrolled is enough.
+const examNeed = c => c.quota ? Math.floor(c.quota * EXAM_RATIO) : null;
 
 // "Today" in Taiwan, as YYYY-MM-DD, so status matches the site's own dates.
 const todayTW = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
