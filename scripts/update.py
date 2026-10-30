@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Refresh class data for 北基宜花金馬分署 from 職業訓練整合網.
 
-The list comes from the same search API the site's own page calls. Each class
-then gets its detail page read for enrollment numbers: 在職 classes use the
-在職訓練網 page, 職前 classes use the 職前訓練網 page. Standard library only,
-so it runs on a bare GitHub Actions runner.
+The class list (names, dates, links) comes from the same search API the
+site's own page calls, and it is refreshed on every run. Enrollment numbers
+and other details come from each class's detail page: 在職 classes use the
+在職訓練網 page, 職前 classes use the 職前訓練網 page. When a detail page
+cannot be read, the last successful values are kept and each class records
+when its numbers were last updated. Standard library only, so it runs on a
+bare GitHub Actions runner.
 """
 import datetime as dt
 import html
@@ -19,14 +22,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "classes.json"
+CHAIN = Path(__file__).resolve().parent / "its_chain.pem"
 API = "https://course.taiwanjobs.gov.tw/api/Course/paging"
 BRANCH = "北基宜花"  # same TrainingUnit value the site's search box sends
 MONTHS_AHEAD = 4  # the site's default window: this month plus four more
 TZ = dt.timezone(dt.timedelta(hours=8))
 UA = "Mozilla/5.0 (class-dashboard refresh)"
-
-
-CHAIN = Path(__file__).resolve().parent / "its_chain.pem"
+DETAIL_FIELDS = ("quota", "enrolled", "hours", "exam", "time", "contact", "phone")
+PAUSE_SECONDS = 3  # pause between detail pages so the government servers aren't hammered
 
 
 def ssl_context():
@@ -38,7 +41,7 @@ def ssl_context():
     return context
 
 
-def fetch(url, body=None, content_type=None, retries=3):
+def fetch(url, body=None, content_type=None, retries=2):
     headers = {"User-Agent": UA}
     if content_type:
         headers["Content-Type"] = content_type
@@ -122,7 +125,7 @@ def parse_ojt(text):
 
 
 def value_after(text, label):
-    """职前訓練網 puts each value on the line after its label."""
+    """職前訓練網 puts each value on the line after its label."""
     lines = text.split("\n")
     for i, line in enumerate(lines):
         if line == label:
@@ -158,7 +161,22 @@ def day(stamp):
     return (stamp or "")[:10] or None
 
 
-def build(row):
+def load_previous():
+    """Last good data file, keyed by class id. Empty on the first run."""
+    if not OUT.exists():
+        return {}
+    data = json.loads(OUT.read_text(encoding="utf-8"))
+    previous = {}
+    for rec in data.get("classes", []):
+        # Files written before per-class timestamps existed: the file's own
+        # timestamp is the best known time for those numbers.
+        if rec.get("enrolled") is not None and not rec.get("detailUpdatedAt"):
+            rec["detailUpdatedAt"] = data.get("updatedAt")
+        previous[rec["id"]] = rec
+    return previous
+
+
+def build(row, previous, now):
     url = row.get("Url") or ""
     rec = {
         "id": row["ID"],
@@ -174,27 +192,28 @@ def build(row):
         "trainStart": day(row.get("TrainingStartDateTime")),
         "trainEnd": day(row.get("TrainingEndDateTime")),
         "url": url,
-        "quota": None,
-        "enrolled": None,
-        "hours": None,
-        "exam": None,
-        "time": None,
-        "contact": None,
-        "phone": None,
         "error": None,
+        "detailUpdatedAt": None,
     }
+    old = previous.get(row["ID"], {})
     try:
         parser = parse_ojt if "ojt.wda.gov.tw" in url else parse_its
-        rec.update(parser(page_text(fetch(url))))
-    except Exception as exc:  # keep the class even if its detail page fails
+        details = parser(page_text(fetch(url)))
+        rec.update({k: details.get(k) for k in DETAIL_FIELDS})
+        rec["detailUpdatedAt"] = now.isoformat(timespec="minutes")
+    except Exception as exc:  # keep the class; fall back to the last good numbers
         rec["error"] = str(exc)[:200]
         print(f"detail page failed: {url}: {rec['error']}", file=sys.stderr)
-    time.sleep(0.5)  # be polite to the government servers
+        for key in DETAIL_FIELDS:
+            rec[key] = old.get(key)
+        rec["detailUpdatedAt"] = old.get("detailUpdatedAt")
+    time.sleep(PAUSE_SECONDS)
     return rec
 
 
 def main():
     now = dt.datetime.now(TZ)
+    previous = load_previous()
     window, total, rows = search_rows(now.date())
     rows = [r for r in rows if BRANCH in (r.get("BranchName") or "")]
     if not rows:
@@ -202,10 +221,8 @@ def main():
     if total != len(rows):
         print(f"warning: API total {total} but {len(rows)} rows for {BRANCH}", file=sys.stderr)
 
-    classes = sorted((build(r) for r in rows), key=lambda c: c["regStart"] or "")
+    classes = sorted((build(r, previous, now) for r in rows), key=lambda c: c["regStart"] or "")
     failed = [c["name"] for c in classes if c["error"]]
-    if len(failed) == len(classes):
-        sys.exit("every detail page failed; keeping the previous data file")
 
     out = {
         "updatedAt": now.isoformat(timespec="minutes"),
@@ -216,7 +233,7 @@ def main():
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"wrote {len(classes)} classes to {OUT} (failed detail pages: {len(failed)})")
+    print(f"wrote {len(classes)} classes to {OUT} (detail pages not refreshed: {len(failed)})")
 
 
 if __name__ == "__main__":

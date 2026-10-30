@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-28T16:10+08:00",
+ "updatedAt": "2026-10-30T15:54+08:00",
  "window": "2026/10 – 2027/02",
  "count": 27,
  "failed": [],
@@ -18,14 +18,15 @@
    "trainStart": "2026-12-07",
    "trainEnd": "2027-06-03",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159316",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
-   "enrolled": 40,
+   "enrolled": 42,
    "hours": 920,
    "exam": "2026/11/19",
    "time": "日間(上午或下午)",
    "contact": "基隆職業訓練場",
-   "phone": "02-24636805分機",
-   "error": null
+   "phone": "02-24636805分機"
   },
   {
    "id": "23490dad-24d2-4604-badb-27a5674b0884",
@@ -41,14 +42,15 @@
    "trainStart": "2026-12-15",
    "trainEnd": "2027-06-25",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159336",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 22,
-   "enrolled": 36,
+   "enrolled": 37,
    "hours": 980,
    "exam": "2026/11/24",
    "time": "日間(上午或下午)",
    "contact": "泰山職業訓練場",
-   "phone": "02-29018274分機 2527",
-   "error": null
+   "phone": "02-29018274分機 2527"
   },
   {
    "id": "c68e1062-33a4-40ff-a5e4-851d5edccef9",
@@ -64,14 +66,15 @@
    "trainStart": "2026-12-23",
    "trainEnd": "2027-06-24",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159282",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
-   "enrolled": 51,
+   "enrolled": 54,
    "hours": 920,
    "exam": "2026/12/01",
    "time": "日間(上午或下午)",
    "contact": "泰山職業訓練場",
-   "phone": "02-29018274分機 2527",
-   "error": null
+   "phone": "02-29018274分機 2527"
   },
   {
    "id": "cf523fce-f5df-4347-8842-399a9733610a",
@@ -87,14 +90,15 @@
    "trainStart": "2026-12-04",
    "trainEnd": "2027-06-10",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159226",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
-   "enrolled": 85,
+   "enrolled": 92,
    "hours": 920,
    "exam": "2026/11/20",
    "time": "日間(上午或下午)",
    "contact": "五股職業訓練場",
-   "phone": "02-89956399分機 2661",
-   "error": null
+   "phone": "02-89956399分機 2661"
   },
   {
    "id": "eb62ed3e-66c1-4d70-abb8-e345499acf61",
@@ -110,14 +114,15 @@
    "trainStart": "2026-12-18",
    "trainEnd": "2027-06-17",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159236",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 10,
    "hours": 936,
    "exam": "2026/12/03",
    "time": "日間(上午或下午)",
    "contact": "泰山職業訓練場",
-   "phone": "02-29018274分機 2527",
-   "error": null
+   "phone": "02-29018274分機 2527"
   },
   {
    "id": "3549723e-d6e2-44d6-8dfb-e1cf207a9caf",
@@ -133,14 +138,15 @@
    "trainStart": "2026-12-14",
    "trainEnd": "2027-06-16",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159188",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
-   "enrolled": 25,
+   "enrolled": 27,
    "hours": 920,
    "exam": "2026/11/27",
    "time": "日間(上午或下午)",
    "contact": "五股職業訓練場",
-   "phone": "02-89903676分機 2662",
-   "error": null
+   "phone": "02-89903676分機 2662"
   },
   {
    "id": "84b6eda6-ba9d-4a51-bf04-de1b2097da94",
@@ -156,14 +162,15 @@
    "trainStart": "2026-12-17",
    "trainEnd": "2027-07-02",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159227",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 6,
    "hours": 980,
    "exam": "2026/12/02",
    "time": "日間(上午或下午)",
    "contact": "五股職業訓練場",
-   "phone": "02-89903676分機 2664",
-   "error": null
+   "phone": "02-89903676分機 2664"
   },
   {
    "id": "7776eac6-e1d9-4473-9b85-b83e8dd55940",
@@ -179,14 +186,15 @@
    "trainStart": "2027-02-01",
    "trainEnd": "2027-07-30",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=166883",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
    "enrolled": 3,
    "hours": 920,
    "exam": "2027/01/06",
    "time": "日間(上午或下午)",
    "contact": "宜蘭職業訓練場",
-   "phone": "03-9231295分機",
-   "error": null
+   "phone": "03-9231295分機"
   },
   {
    "id": "e533eb4e-d5d2-4f09-a796-874289e3ea79",
@@ -202,14 +210,15 @@
    "trainStart": "2027-01-09",
    "trainEnd": "2027-06-26",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174671",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
-   "enrolled": 21,
+   "enrolled": 22,
    "hours": 144,
    "exam": "2026/12/19 下午",
    "time": "週六08:10-16:35",
    "contact": "宋小姐",
-   "phone": "02-89956399#2527",
-   "error": null
+   "phone": "02-89956399#2527"
   },
   {
    "id": "2e7d2f46-a3ee-4e9c-81bc-b9f5e0da94a7",
@@ -225,14 +234,15 @@
    "trainStart": "2027-01-09",
    "trainEnd": "2027-04-25",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174672",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 15,
-   "enrolled": 23,
+   "enrolled": 24,
    "hours": 120,
    "exam": "2026/12/19 上午",
    "time": "週六或日08:10-16:35",
    "contact": "康小姐",
-   "phone": "02-89956399#2525",
-   "error": null
+   "phone": "02-89956399#2525"
   },
   {
    "id": "12ea76e1-e736-4cd8-b909-842a03efad54",
@@ -248,14 +258,15 @@
    "trainStart": "2027-01-10",
    "trainEnd": "2027-06-06",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174677",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
    "enrolled": 3,
    "hours": 144,
    "exam": "2026/12/20 上午",
    "time": "週日08:10~16:35",
    "contact": "潘小姐",
-   "phone": "03-9231295",
-   "error": null
+   "phone": "03-9231295"
   },
   {
    "id": "b5c9e2e1-c522-451a-b053-c1fdefb304e0",
@@ -271,14 +282,15 @@
    "trainStart": "2027-02-21",
    "trainEnd": "2027-07-11",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174676",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
-   "enrolled": 3,
+   "enrolled": 5,
    "hours": 120,
    "exam": "2027/01/23 上午 09:00",
    "time": "週日08:10~16:35",
    "contact": "蔡先生",
-   "phone": "02-89956399#2536",
-   "error": null
+   "phone": "02-89956399#2536"
   },
   {
    "id": "4a318b04-646c-4a37-b5ef-aa0ca6ac5a52",
@@ -294,14 +306,15 @@
    "trainStart": "2027-01-11",
    "trainEnd": "2027-07-07",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=167059",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 22,
    "enrolled": 2,
    "hours": 920,
    "exam": "2026/12/24",
    "time": "日間(上午及下午)",
    "contact": "基隆就業中心六堵分站-黃小姐",
-   "phone": "02-24515020分機 3381",
-   "error": null
+   "phone": "02-24515020分機 3381"
   },
   {
    "id": "9df1a9aa-9a3a-4227-a8e5-d6635b4b59da",
@@ -317,14 +330,15 @@
    "trainStart": "2027-01-25",
    "trainEnd": "2027-07-23",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=166907",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 0,
    "hours": 920,
    "exam": "2027/01/06",
    "time": "日間(上午或下午)",
    "contact": "宜蘭職業訓練場",
-   "phone": "03-9231295分機",
-   "error": null
+   "phone": "03-9231295分機"
   },
   {
    "id": "ea82a600-31df-42b9-bc5a-3feaf26f086b",
@@ -340,14 +354,15 @@
    "trainStart": "2027-02-16",
    "trainEnd": "2027-08-18",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=167065",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
    "enrolled": 2,
    "hours": 1000,
    "exam": "2027/01/18",
    "time": "日間(上午及下午)",
    "contact": "基隆職業訓練場",
-   "phone": "02-24636805分機",
-   "error": null
+   "phone": "02-24636805分機"
   },
   {
    "id": "e55552df-a720-4846-aedb-4799208e790c",
@@ -363,14 +378,15 @@
    "trainStart": "2027-01-04",
    "trainEnd": "2027-05-24",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174679",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
-   "enrolled": 24,
+   "enrolled": 27,
    "hours": 144,
    "exam": "2026/12/28 下午 18:00",
    "time": "週一、二18:30~21:30",
    "contact": "潘小姐",
-   "phone": "03-9231295",
-   "error": null
+   "phone": "03-9231295"
   },
   {
    "id": "1ca8ff05-1fa7-4930-b699-5800912b8fe1",
@@ -386,14 +402,15 @@
    "trainStart": "2027-02-02",
    "trainEnd": "2027-07-29",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=166891",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 22,
    "enrolled": 3,
    "hours": 900,
    "exam": "2027/01/19",
    "time": "日間(上午或下午)",
    "contact": "五股職業訓練場",
-   "phone": "02-8995-6399分機 2663",
-   "error": null
+   "phone": "02-8995-6399分機 2663"
   },
   {
    "id": "14967e16-1891-4cf5-9aab-3452882cc161",
@@ -409,14 +426,15 @@
    "trainStart": "2027-02-12",
    "trainEnd": "2027-08-13",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=167028",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 0,
    "hours": 980,
    "exam": "2027/01/21",
    "time": "日間(上午或下午)",
    "contact": "五股職業訓練場",
-   "phone": "02-89903676分機 2662",
-   "error": null
+   "phone": "02-89903676分機 2662"
   },
   {
    "id": "773d5fb6-a938-4757-bbfb-291a7bbda8fc",
@@ -432,14 +450,15 @@
    "trainStart": "2027-02-25",
    "trainEnd": "2027-08-19",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=166908",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
    "enrolled": 2,
    "hours": 920,
    "exam": "2027/01/28",
    "time": "日間(上午或下午)",
    "contact": "宜蘭職業訓練場",
-   "phone": "03-9231295分機",
-   "error": null
+   "phone": "03-9231295分機"
   },
   {
    "id": "6964c4b6-9680-4698-8ffb-34bbdaa4e5c1",
@@ -455,14 +474,15 @@
    "trainStart": "2027-01-16",
    "trainEnd": "2027-04-24",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174680",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
    "enrolled": 2,
    "hours": 96,
    "exam": "2027/01/09 上午 09:00",
    "time": "週六08:10-16:35",
    "contact": "潘小姐",
-   "phone": "03-9231-295",
-   "error": null
+   "phone": "03-9231-295"
   },
   {
    "id": "ef40a90b-3358-4359-a3e0-6a3d7d63137c",
@@ -478,14 +498,15 @@
    "trainStart": "2027-02-15",
    "trainEnd": "2027-08-06",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=166886",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
-   "enrolled": 0,
+   "enrolled": 1,
    "hours": 920,
    "exam": "2027/01/07",
    "time": "日間(上午或下午)",
    "contact": "花蓮職業訓練場",
-   "phone": "03-8242083分機",
-   "error": null
+   "phone": "03-8242083分機"
   },
   {
    "id": "c286b57a-32d5-4860-834a-cb982b23f441",
@@ -501,14 +522,15 @@
    "trainStart": "2027-01-24",
    "trainEnd": "2027-07-10",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174681",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 0,
    "hours": 144,
    "exam": "2027/01/10 上午 09:00",
    "time": "週六或日08:10~16:35",
    "contact": "鍾小姐",
-   "phone": "038-242083#6502",
-   "error": null
+   "phone": "038-242083#6502"
   },
   {
    "id": "73950449-55cf-4f8e-89e9-599077bf12a2",
@@ -524,14 +546,15 @@
    "trainStart": "2027-01-25",
    "trainEnd": "2027-07-22",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=166882",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 0,
    "hours": 920,
    "exam": "2026/12/30",
    "time": "日間(上午或下午)",
    "contact": "花蓮職業訓練場",
-   "phone": "03-8242083分機",
-   "error": null
+   "phone": "03-8242083分機"
   },
   {
    "id": "871ae652-2892-4a3b-a057-5499de7b5ff0",
@@ -547,14 +570,15 @@
    "trainStart": "2027-02-15",
    "trainEnd": "2027-06-02",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174683",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 22,
    "enrolled": 0,
    "hours": 120,
    "exam": "2027/01/27 下午 18:00",
    "time": "週一、三18：30~21：40",
    "contact": "姜小姐",
-   "phone": "02-89956399分機2665",
-   "error": null
+   "phone": "02-89956399分機2665"
   },
   {
    "id": "c832c6de-2fe1-4e1a-b1fa-872ffb0e0edb",
@@ -570,14 +594,15 @@
    "trainStart": "2027-02-16",
    "trainEnd": "2027-06-17",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174684",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 0,
    "hours": 144,
    "exam": "2027/01/19 下午 18:00",
    "time": "週二、三、四18:30~21:40",
    "contact": "鍾小姐",
-   "phone": "038-242083#6502",
-   "error": null
+   "phone": "038-242083#6502"
   },
   {
    "id": "acb78424-181a-4234-bd25-1604f41d6d51",
@@ -593,14 +618,15 @@
    "trainStart": "2027-02-20",
    "trainEnd": "2027-06-05",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174685",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 24,
    "enrolled": 0,
    "hours": 80,
    "exam": "2027/02/13 上午 09:00",
    "time": "週六或週日08:10～16:35",
    "contact": "鄭先生",
-   "phone": "02-89956399分機2672",
-   "error": null
+   "phone": "02-89956399分機2672"
   },
   {
    "id": "4e610e5b-5014-4da2-a146-26e549a95552",
@@ -616,14 +642,15 @@
    "trainStart": "2027-02-13",
    "trainEnd": "2027-04-25",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174682",
+   "error": null,
+   "detailUpdatedAt": "2026-10-30T15:54+08:00",
    "quota": 20,
    "enrolled": 0,
    "hours": 120,
    "exam": "2027/01/30 上午 09:00",
    "time": "週六或日08:10~16:35",
    "contact": "王小姐",
-   "phone": "02-89956399分機2664",
-   "error": null
+   "phone": "02-89956399分機2664"
   }
  ]
 }

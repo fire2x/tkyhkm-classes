@@ -255,6 +255,7 @@ main, header { max-width: 1140px; margin: 0 auto; }
 .bar-scale span:last-child { transform: translateX(-100%); }
 .hint { font-size: 0.82rem; font-weight: 600; }
 .hint.ok { color: var(--open); }
+.enroll-stamp { font-size: 0.74rem; color: var(--muted); }
 .hint.warn { color: var(--pre); }
 .note-box { font-size: 0.84rem; color: var(--muted); border: 1px dashed var(--glass-edge); border-radius: 12px; padding: 8px 10px; background: var(--glass); }
 
@@ -398,6 +399,7 @@ function enrollBlock(c) {
       </div>
       <div class="bar-scale"><span style="left:0">0</span><span style="left:${mark}%">預訓 ${c.quota}</span><span style="left:100%">1.6 倍 ${need}</span></div>
       ${hint}
+      ${c.detailUpdatedAt ? `<div class="enroll-stamp">人數更新於 ${esc(c.detailUpdatedAt.slice(0, 16).replace('T', ' '))}</div>` : ''}
     </div>`;
 }
 
