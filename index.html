@@ -307,12 +307,12 @@ footer {
       <button class="chip" data-v="closed" aria-pressed="false">已截止</button>
     </div>
     <select id="f-kind" aria-label="性質">
-      <option value="all">在職與職前</option>
-      <option value="在職">只看在職</option>
-      <option value="職前">只看職前</option>
+      <option value="all">職前/在職</option>
+      <option value="在職">在職訓練</option>
+      <option value="職前">職前訓練</option>
     </select>
     <select id="f-site" aria-label="訓練場地">
-      <option value="all">全部場地</option>
+      <option value="all">訓練場/教室</option>
       <option value="基隆">基隆</option>
       <option value="五股">五股</option>
       <option value="泰山">泰山</option>
@@ -448,7 +448,10 @@ function render() {
     (site === 'all' || siteOf(c) === site) &&
     (!q || [c.name, c.category, c.location, c.contact, c.code, c.city].join(' ').toLowerCase().includes(q))
   );
+  // 職前 classes come first; 在職訓練 classes are listed after them.
+  const kindRank = c => (c.source === '在職' ? 1 : 0);
   list.sort((a, b) => {
+    if (kindRank(a) !== kindRank(b)) return kindRank(a) - kindRank(b);
     if (sort === 'enroll') return (b.enrolled ?? -1) - (a.enrolled ?? -1);
     return (a.regStart || '').localeCompare(b.regStart || '');
   });
