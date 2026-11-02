@@ -30,6 +30,7 @@ TZ = dt.timezone(dt.timedelta(hours=8))
 UA = "Mozilla/5.0 (class-dashboard refresh)"
 DETAIL_FIELDS = ("quota", "enrolled", "hours", "exam", "time", "contact", "phone")
 PAUSE_SECONDS = 3  # pause between detail pages so the government servers aren't hammered
+MAX_FAILURE_STREAK = 5  # after this many failures in a row, stop trying the rest this run
 
 
 def ssl_context():
@@ -176,7 +177,7 @@ def load_previous():
     return previous
 
 
-def build(row, previous, now):
+def build(row, previous, now, skip=False):
     url = row.get("Url") or ""
     rec = {
         "id": row["ID"],
@@ -197,6 +198,8 @@ def build(row, previous, now):
     }
     old = previous.get(row["ID"], {})
     try:
+        if skip:
+            raise RuntimeError("skipped after repeated failures this run")
         parser = parse_ojt if "ojt.wda.gov.tw" in url else parse_its
         details = parser(page_text(fetch(url)))
         rec.update({k: details.get(k) for k in DETAIL_FIELDS})
@@ -221,7 +224,18 @@ def main():
     if total != len(rows):
         print(f"warning: API total {total} but {len(rows)} rows for {BRANCH}", file=sys.stderr)
 
-    classes = sorted((build(r, previous, now) for r in rows), key=lambda c: c["regStart"] or "")
+    built, streak = [], 0
+    for row in rows:
+        skip = streak >= MAX_FAILURE_STREAK
+        rec = build(row, previous, now, skip=skip)
+        if skip:
+            pass  # the streak stays at the limit; the rest of the run is skipped
+        elif rec["error"]:
+            streak += 1
+        else:
+            streak = 0
+        built.append(rec)
+    classes = sorted(built, key=lambda c: c["regStart"] or "")
     failed = [c["name"] for c in classes if c["error"]]
 
     out = {
@@ -234,6 +248,9 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"wrote {len(classes)} classes to {OUT} (detail pages not refreshed: {len(failed)})")
+    if len(failed) == len(classes):
+        # Shown as a warning on the run page, so a failed refresh isn't hidden behind "success".
+        print("::warning::No detail page was read this run; enrollment numbers keep their earlier values.")
 
 
 if __name__ == "__main__":
