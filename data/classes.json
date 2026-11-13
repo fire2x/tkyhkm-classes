@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-13T06:00+08:00",
+ "updatedAt": "2026-11-13T20:02+08:00",
  "window": "2026/11 – 2027/03",
  "count": 41,
  "failed": [
@@ -924,7 +924,7 @@
    "trainStart": "2027-03-15",
    "trainEnd": "2027-09-02",
    "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=166884",
-   "error": "<urlopen error [Errno 101] Network is unreachable>",
+   "error": "HTTP Error 504: Gateway Timeout",
    "detailUpdatedAt": "2026-11-02T09:05+08:00",
    "quota": 24,
    "enrolled": 0,
@@ -972,7 +972,7 @@
    "trainStart": "2027-03-13",
    "trainEnd": "2027-06-26",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174690",
-   "error": "<urlopen error timed out>",
+   "error": "HTTP Error 504: Gateway Timeout",
    "detailUpdatedAt": "2026-11-02T09:05+08:00",
    "quota": 22,
    "enrolled": 0,
