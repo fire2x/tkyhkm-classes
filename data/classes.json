@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-20T20:42+08:00",
+ "updatedAt": "2026-11-21T06:27+08:00",
  "window": "2026/11 – 2027/03",
  "count": 40,
  "failed": [
@@ -923,7 +923,7 @@
    "trainStart": "2027-03-10",
    "trainEnd": "2027-06-24",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174688",
-   "error": "<urlopen error timed out>",
+   "error": "HTTP Error 504: Gateway Timeout",
    "detailUpdatedAt": "2026-11-20T13:49+08:00",
    "quota": 24,
    "enrolled": 0,
@@ -947,7 +947,7 @@
    "trainStart": "2027-03-13",
    "trainEnd": "2027-06-26",
    "url": "https://ojt.wda.gov.tw/ClassSearch/Detail?PlanType=2&OCID=174690",
-   "error": "<urlopen error timed out>",
+   "error": "HTTP Error 504: Gateway Timeout",
    "detailUpdatedAt": "2026-11-20T13:49+08:00",
    "quota": 22,
    "enrolled": 0,
