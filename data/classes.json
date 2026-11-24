@@ -1,10 +1,9 @@
 {
- "updatedAt": "2026-11-23T22:20+08:00",
+ "updatedAt": "2026-11-24T10:43+08:00",
  "window": "2026/11 – 2027/03",
- "count": 40,
+ "count": 39,
  "failed": [
   "物聯網-AI系統整合實務(泰山) 第02期",
-  "自動化機電控制(五股) 第02期",
   "AI輔助室內裝修設計養成(宜蘭) 第01期",
   "升降機裝修(泰山) 第01期",
   "造園景觀-住宅開放空間景觀設計施作(假日班)(宜蘭)第01期",
@@ -68,30 +67,6 @@
    "time": "日間(上午或下午)",
    "contact": "泰山職業訓練場",
    "phone": "02-29018274分機 2527"
-  },
-  {
-   "id": "84b6eda6-ba9d-4a51-bf04-de1b2097da94",
-   "code": "159227",
-   "source": "職前",
-   "plan": "職前訓練",
-   "name": "自動化機電控制(五股) 第02期",
-   "category": "機電整合工程師",
-   "location": "新北市五股區(248016)新北市五股區五權路17號6樓",
-   "city": "新北市",
-   "regStart": "2026-08-25",
-   "regEnd": "2026-11-23",
-   "trainStart": "2026-12-17",
-   "trainEnd": "2027-07-02",
-   "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159227",
-   "error": "skipped after repeated failures this run",
-   "detailUpdatedAt": "2026-11-20T13:49+08:00",
-   "quota": 24,
-   "enrolled": 17,
-   "hours": 980,
-   "exam": "2026/12/02",
-   "time": "日間(上午或下午)",
-   "contact": "五股職業訓練場",
-   "phone": "02-89903676分機 2664"
   },
   {
    "id": "7776eac6-e1d9-4473-9b85-b83e8dd55940",
