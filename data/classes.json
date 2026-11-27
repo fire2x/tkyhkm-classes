@@ -1,9 +1,8 @@
 {
- "updatedAt": "2026-11-27T21:41+08:00",
+ "updatedAt": "2026-11-28T07:51+08:00",
  "window": "2026/11 – 2027/03",
- "count": 39,
+ "count": 38,
  "failed": [
-  "物聯網-AI系統整合實務(泰山) 第02期",
   "AI輔助室內裝修設計養成(宜蘭) 第01期",
   "升降機裝修(泰山) 第01期",
   "造園景觀-住宅開放空間景觀設計施作(假日班)(宜蘭)第01期",
@@ -44,30 +43,6 @@
   "Linux系統暨網路安全(假日班)(五股)第01期"
  ],
  "classes": [
-  {
-   "id": "eb62ed3e-66c1-4d70-abb8-e345499acf61",
-   "code": "159236",
-   "source": "職前",
-   "plan": "職前訓練",
-   "name": "物聯網-AI系統整合實務(泰山) 第02期",
-   "category": "軟(韌)體設計工程師",
-   "location": "新北市泰山區(24302)新北市泰山區致遠新村55-1號",
-   "city": "新北市",
-   "regStart": "2026-08-20",
-   "regEnd": "2026-11-27",
-   "trainStart": "2026-12-30",
-   "trainEnd": "2027-06-29",
-   "url": "https://its.taiwanjobs.gov.tw/Course/Detail?ID=159236",
-   "error": "skipped after repeated failures this run",
-   "detailUpdatedAt": "2026-11-20T13:49+08:00",
-   "quota": 24,
-   "enrolled": 21,
-   "hours": 936,
-   "exam": "2026/12/10",
-   "time": "日間(上午或下午)",
-   "contact": "泰山職業訓練場",
-   "phone": "02-29018274分機 2527"
-  },
   {
    "id": "7776eac6-e1d9-4473-9b85-b83e8dd55940",
    "code": "166883",
